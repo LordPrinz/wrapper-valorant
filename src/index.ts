@@ -1,4 +1,9 @@
 import { getContentsHandler } from "./lib/controllers/VAL-CONTENT-V1";
+import {
+	getMatchByMatchId,
+	getMatchByPuuid,
+	getMatchByQueue,
+} from "./lib/controllers/VAL-MATCH-V1";
 import { getRankedHandler } from "./lib/controllers/VAL-RANKED-V1";
 import { getStatusHandler } from "./lib/controllers/VAL-STATUS-V1";
 import { int } from "./types/alias";
@@ -33,9 +38,24 @@ class ValorantApi {
 	}
 
 	public match = {
-		getByMatchId: () => {},
-		getByPuuid: () => {},
-		getByQueue: () => {},
+		getByMatchId: async (data: { matchId: string; region: Region }) => {
+			return await getMatchByMatchId({
+				...data,
+				apiKey: this.key,
+			});
+		},
+		getByPuuid: async (data: { puuid: string; region: Region }) => {
+			return await getMatchByPuuid({
+				...data,
+				apiKey: this.key,
+			});
+		},
+		getByQueue: async (data: { queue: string; region: Region }) => {
+			return await getMatchByQueue({
+				...data,
+				apiKey: this.key,
+			});
+		},
 	};
 }
 
