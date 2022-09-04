@@ -3,13 +3,15 @@ import { Region } from "../../types/Region";
 import { ContentDto } from "../../types/VAL-CONTENT-V1";
 import fetchData from "../../utils/fetchData";
 
-export const getContentsHandler = async (data: {
+export const getContentsHandler = async ({
+	locale,
+	region,
+	apiKey,
+}: {
 	locale: Locale;
 	region: Region;
 	apiKey: string;
 }): Promise<ContentDto | null> => {
-	const { locale, region, apiKey } = data;
-
 	let response: any;
 
 	try {

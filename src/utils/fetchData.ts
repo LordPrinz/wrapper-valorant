@@ -8,7 +8,7 @@ const fetchData = async <T>({
 }: {
 	region: string;
 	endpoint: string;
-	params: string[];
+	params?: string[];
 	apiKey: string;
 }): Promise<T | never> => {
 	if (!endpoint) {
@@ -19,9 +19,9 @@ const fetchData = async <T>({
 		throw new Error("No region provided!");
 	}
 
-	const url = `https://${region}.api.riotgames.com/val${endpoint}?${params.join(
-		"&"
-	)}`;
+	const url = `https://${region}.api.riotgames.com/val${endpoint}?${
+		params ? params.join("&") : ""
+	}`;
 
 	const response = await fetch(url, {
 		headers: {
