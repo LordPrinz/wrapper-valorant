@@ -1,5 +1,7 @@
 import { getContentsHandler } from "./lib/controllers/VAL-CONTENT-V1";
+import { getRankedHandler } from "./lib/controllers/VAL-RANKED-V1";
 import { getStatusHandler } from "./lib/controllers/VAL-STATUS-V1";
+import { int } from "./types/alias";
 import { Locale } from "./types/LocalizedNamesDto";
 import { Region } from "./types/Region";
 
@@ -19,6 +21,15 @@ class ValorantApi {
 
 	async getStatus(data: { region: Region }) {
 		return await getStatusHandler({ ...data, apiKey: this.key });
+	}
+
+	async getLeaderboard(data: {
+		actId: string;
+		region: Region;
+		size?: int;
+		startIndex?: int;
+	}) {
+		return await getRankedHandler({ ...data, apiKey: this.key });
 	}
 }
 
