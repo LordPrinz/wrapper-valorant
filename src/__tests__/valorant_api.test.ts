@@ -118,3 +118,15 @@ describe("VAL-STATUS-V1", () => {
 		expect(result).toBeTruthy();
 	});
 });
+
+describe("VAL-RANKED-V1", () => {
+	test("getLeaderboardsByAct", async () => {
+		const api = new ValorantApi(API_KEY);
+		const result = await api.getLeaderboard({
+			actId: "67e373c7-48f7-b422-641b-079ace30b427",
+			region: "na",
+		});
+
+		expect(result).toBeTruthy();
+	});
+});
