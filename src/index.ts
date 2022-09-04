@@ -20,17 +20,17 @@ class ValorantApi {
 		this.key = key;
 	}
 
-	async getContents(data: { locale: Locale; region: Region }) {
+	async getContents(data: { locale: Locale; region?: Region }) {
 		return await getContentsHandler({ ...data, apiKey: this.key });
 	}
 
-	async getStatus(data: { region: Region }) {
+	async getStatus(data: { region?: Region }) {
 		return await getStatusHandler({ ...data, apiKey: this.key });
 	}
 
 	async getLeaderboard(data: {
 		actId: string;
-		region: Region;
+		region?: Region;
 		size?: int;
 		startIndex?: int;
 	}) {
@@ -38,19 +38,19 @@ class ValorantApi {
 	}
 
 	public match = {
-		getByMatchId: async (data: { matchId: string; region: Region }) => {
+		getByMatchId: async (data: { matchId: string; region?: Region }) => {
 			return await getMatchByMatchId({
 				...data,
 				apiKey: this.key,
 			});
 		},
-		getByPuuid: async (data: { puuid: string; region: Region }) => {
+		getByPuuid: async (data: { puuid: string; region?: Region }) => {
 			return await getMatchByPuuid({
 				...data,
 				apiKey: this.key,
 			});
 		},
-		getByQueue: async (data: { queue: string; region: Region }) => {
+		getByQueue: async (data: { queue: string; region?: Region }) => {
 			return await getMatchByQueue({
 				...data,
 				apiKey: this.key,

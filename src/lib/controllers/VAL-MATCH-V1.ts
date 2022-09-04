@@ -9,11 +9,11 @@ import fetchData from "../../utils/fetchData";
 
 export const getMatchByMatchId = async ({
 	matchId,
-	region,
+	region = "eu",
 	apiKey,
 }: {
 	matchId: string;
-	region: Region;
+	region?: Region;
 	apiKey: string;
 }): Promise<MatchesMatchDto | null> => {
 	let response: any;
@@ -34,11 +34,11 @@ export const getMatchByMatchId = async ({
 
 export const getMatchByPuuid = async ({
 	puuid,
-	region,
+	region = "eu",
 	apiKey,
 }: {
 	puuid: puuid;
-	region: Region;
+	region?: Region;
 	apiKey: string;
 }): Promise<MatchlistDto | null> => {
 	let response: any;
@@ -59,11 +59,11 @@ export const getMatchByPuuid = async ({
 
 export const getMatchByQueue = async ({
 	queue,
-	region,
+	region = "eu",
 	apiKey,
 }: {
 	queue: string;
-	region: Region;
+	region?: Region;
 	apiKey: string;
 }): Promise<RecentMatchesDto | null> => {
 	let response: any;

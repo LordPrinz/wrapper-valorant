@@ -3,10 +3,10 @@ import { PlatformDataDto } from "../../types/VAL-STATUS-V1";
 import fetchData from "../../utils/fetchData";
 
 export const getStatusHandler = async ({
-	region,
+	region = "eu",
 	apiKey,
 }: {
-	region: Region;
+	region?: Region;
 	apiKey: string;
 }): Promise<PlatformDataDto | null> => {
 	let response: any;

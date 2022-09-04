@@ -5,11 +5,11 @@ import fetchData from "../../utils/fetchData";
 
 export const getContentsHandler = async ({
 	locale,
-	region,
+	region = "eu",
 	apiKey,
 }: {
 	locale: Locale;
-	region: Region;
+	region?: Region;
 	apiKey: string;
 }): Promise<ContentDto | null> => {
 	let response: any;
