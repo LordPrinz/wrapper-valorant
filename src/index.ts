@@ -6,6 +6,9 @@ class ValorantApi {
 	private key: string;
 
 	constructor(key: string) {
+		if (!key) {
+			throw new Error("No api key provided!");
+		}
 		this.key = key;
 	}
 

@@ -11,9 +11,6 @@ const fetchData = async <T>({
 	params: string[];
 	apiKey: string;
 }): Promise<T | never> => {
-	if (!apiKey) {
-		throw new Error("No API key provided!");
-	}
 	if (!endpoint) {
 		throw new Error("No endpoint key provided!");
 	}
