@@ -1,21 +1,21 @@
-export type LocalizedNamesDto = {
-	"ar-AE": string;
-	"de-DE": string;
-	"en-GB": string;
-	"en-US": string;
-	"es-ES": string;
-	"es-MX": string;
-	"fr-FR": string;
-	"id-ID": string;
-	"it-IT": string;
-	"ja-JP": string;
-	"ko-KR": string;
-	"pl-PL": string;
-	"pt-BR": string;
-	"ru-RU": string;
-	"th-TH": string;
-	"tr-TR": string;
-	"vi-VN": string;
-	"zh-CN": string;
-	"zh-TW": string;
-};
+export enum Locale {
+	"ar-AE" = "ar-AE",
+	"de-DE" = "de-DE",
+	"en-GB" = "en-GB",
+	"en-US" = "en-US",
+	"es-ES" = "es-ES",
+	"es-MX" = "es-MX",
+	"fr-FR" = "fr-FR",
+	"id-ID" = "id-ID",
+	"it-IT" = "it-IT",
+	"ja-JP" = "ja-JP",
+	"ko-KR" = "ko-KR",
+	"pl-PL" = "pl-PL",
+	"pt-BR" = "pt-BR",
+	"ru-RU" = "ru-RU",
+	"th-TH" = "th-TH",
+	"tr-TR" = "tr-TR",
+	"vi-VN" = "vi-VN",
+	"zh-CN" = "zh-CN",
+	"zh-TW" = "zh-TW",
+}

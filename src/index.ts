@@ -1,13 +1,16 @@
+import { getContentsHandler } from "./lib/controllers/VAL-CONTENT-V1";
+import { Locale } from "./types/LocalizedNamesDto";
+import { Region } from "./types/Region";
+
 class ValorantApi {
 	private key: string;
-	private baseUrl = "https://ap.api.riotgames.com/val";
 
 	constructor(key: string) {
 		this.key = key;
 	}
 
-	public getContent() {
-		return "XD";
+	async getContents(data: { locale: Locale; region: Region }) {
+		return await getContentsHandler({ ...data, apiKey: this.key });
 	}
 }
 

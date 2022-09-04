@@ -3,7 +3,7 @@
  *
  */
 
-import { LocalizedNamesDto } from "./LocalizedNamesDto";
+import { Locale as LocalizedNamesDto } from "./LocalizedNamesDto";
 
 export type ContentDto = {
 	/**
