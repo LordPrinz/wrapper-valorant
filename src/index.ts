@@ -31,6 +31,12 @@ class ValorantApi {
 	}) {
 		return await getRankedHandler({ ...data, apiKey: this.key });
 	}
+
+	public match = {
+		getByMatchId: () => {},
+		getByPuuid: () => {},
+		getByQueue: () => {},
+	};
 }
 
 export default ValorantApi;
