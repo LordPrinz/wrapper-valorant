@@ -17,6 +17,4 @@ class ValorantApi {
 	}
 }
 
-console.log(process.env.API_KEY);
-
 export default ValorantApi;

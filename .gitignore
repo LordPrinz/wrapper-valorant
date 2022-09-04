@@ -1,3 +1,3 @@
 /node_modules
-.env
+/src/setup-tests.ts
 /src/apiKey.ts
