@@ -1,21 +1,20 @@
-export enum Locale {
-	"ar-AE" = "ar-AE",
-	"de-DE" = "de-DE",
-	"en-GB" = "en-GB",
-	"en-US" = "en-US",
-	"es-ES" = "es-ES",
-	"es-MX" = "es-MX",
-	"fr-FR" = "fr-FR",
-	"id-ID" = "id-ID",
-	"it-IT" = "it-IT",
-	"ja-JP" = "ja-JP",
-	"ko-KR" = "ko-KR",
-	"pl-PL" = "pl-PL",
-	"pt-BR" = "pt-BR",
-	"ru-RU" = "ru-RU",
-	"th-TH" = "th-TH",
-	"tr-TR" = "tr-TR",
-	"vi-VN" = "vi-VN",
-	"zh-CN" = "zh-CN",
-	"zh-TW" = "zh-TW",
-}
+export type Locale =
+	| "ar-AE"
+	| "de-DE"
+	| "en-GB"
+	| "en-US"
+	| "es-ES"
+	| "es-MX"
+	| "fr-FR"
+	| "id-ID"
+	| "it-IT"
+	| "ja-JP"
+	| "ko-KR"
+	| "pl-PL"
+	| "pt-BR"
+	| "ru-RU"
+	| "th-TH"
+	| "tr-TR"
+	| "vi-VN"
+	| "zh-CN"
+	| "zh-TW";

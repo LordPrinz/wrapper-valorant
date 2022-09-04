@@ -1,9 +1,1 @@
-export enum Region {
-	AP = "ap",
-	BR = "br",
-	ESPORTS = "esports",
-	EU = "eu",
-	KR = "kr",
-	LATAM = "latam",
-	NA = "na",
-}
+export type Region = "ap" | "br" | "esports" | "eu" | "kr" | "latam" | "na";
