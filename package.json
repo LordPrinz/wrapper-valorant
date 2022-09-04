@@ -32,7 +32,6 @@
     },
     "dependencies": {
         "child_process": "^1.0.2",
-        "dotenv": "^16.0.2",
         "node-fetch": "^2.6.7"
     }
 }
