@@ -132,7 +132,7 @@ describe("VAL-RANKED-V1", () => {
 });
 
 describe("VAL-MATCH-V1", () => {
-	test("getMatchById w/o Prod Key", async () => {
+	test("getMatchById", async () => {
 		const api = new ValorantApi(API_KEY);
 		await api.match
 			.getByMatchId({ matchId: "4761", region: "eu" })
