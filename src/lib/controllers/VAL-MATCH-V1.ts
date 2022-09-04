@@ -1,5 +1,6 @@
+import { puuid } from "../../types/alias";
 import { Region } from "../../types/Region";
-import { MatchesMatchDto } from "../../types/VAL-MATCH-V1";
+import { MatchesMatchDto, MatchlistDto } from "../../types/VAL-MATCH-V1";
 import fetchData from "../../utils/fetchData";
 
 export const getMatchByMatchId = async ({
@@ -25,4 +26,29 @@ export const getMatchByMatchId = async ({
 	}
 
 	return <MatchesMatchDto>response;
+};
+
+export const getMatchByPuuid = async ({
+	puuid,
+	region,
+	apiKey,
+}: {
+	puuid: puuid;
+	region: Region;
+	apiKey: string;
+}): Promise<MatchlistDto | null> => {
+	let response: any;
+
+	try {
+		response = await fetchData({
+			region: region,
+			endpoint: `/match/v1/matchlists/by-puuid/${puuid}`,
+			apiKey,
+		});
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+
+	return <MatchlistDto>response;
 };
