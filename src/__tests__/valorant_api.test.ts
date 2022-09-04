@@ -130,3 +130,50 @@ describe("VAL-RANKED-V1", () => {
 		expect(result).toBeTruthy();
 	});
 });
+
+describe("VAL-MATCH-V1", () => {
+	test("getMatchById w/o Prod Key", async () => {
+		const api = new ValorantApi(API_KEY);
+		await api.match
+			.getByMatchId({ matchId: "4761", region: "eu" })
+			.catch((err: any) => {
+				expect(err).toBeTruthy();
+				expect(err.status_code).toBeTruthy();
+				expect(err.status_code).not.toEqual(200);
+				expect(err.message).toBeTruthy();
+				expect(err.request).toBeTruthy();
+			});
+	});
+
+	test("getMatchesByPuuid", async () => {
+		const api = new ValorantApi(API_KEY);
+		await api.match
+			.getByPuuid({
+				puuid: "00000000-0000-0000-0000-000000000000",
+				region: "eu",
+			})
+			.catch((err: any) => {
+				expect(err).toBeTruthy();
+				expect(err.status_code).toBeTruthy();
+				expect(err.status_code).not.toEqual(200);
+				expect(err.message).toBeTruthy();
+				expect(err.request).toBeTruthy();
+			});
+	});
+
+	test("getRecentMatches", async () => {
+		const api = new ValorantApi(API_KEY);
+		await api.match
+			.getByQueue({
+				queue: "Competetive",
+				region: "eu",
+			})
+			.catch((err: any) => {
+				expect(err).toBeTruthy();
+				expect(err.status_code).toBeTruthy();
+				expect(err.status_code).not.toEqual(200);
+				expect(err.message).toBeTruthy();
+				expect(err.request).toBeTruthy();
+			});
+	});
+});
