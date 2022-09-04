@@ -112,8 +112,7 @@ describe("VAL-CONTENT-V1", () => {
 describe("VAL-STATUS-V1", () => {
 	test("getPlatformData", async () => {
 		const api = new ValorantApi(API_KEY);
-		const result = await api.getContents({
-			locale: "en-US",
+		const result = await api.getStatus({
 			region: "na",
 		});
 		expect(result).toBeTruthy();
