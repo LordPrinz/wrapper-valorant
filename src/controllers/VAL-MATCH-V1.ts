@@ -1,12 +1,12 @@
-import { puuid } from "../../types/alias";
-import { Region } from "../../types/Region";
-import { Queue } from "../../types/RIOT-ACCOUNT-V1";
+import { puuid } from "../types/alias";
+import { Region } from "../types/Region";
+import { Queue } from "../types/RIOT-ACCOUNT-V1";
 import {
 	MatchesMatchDto,
 	MatchlistDto,
 	RecentMatchesDto,
-} from "../../types/VAL-MATCH-V1";
-import fetchData from "../../utils/fetchData";
+} from "../types/VAL-MATCH-V1";
+import fetchData from "../utils/fetchData";
 
 export const getMatchByMatchId = async ({
 	matchId,

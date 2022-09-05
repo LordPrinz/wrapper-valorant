@@ -1,7 +1,7 @@
-import { Locale } from "../../types/LocalizedNamesDto";
-import { Region } from "../../types/Region";
-import { ContentDto } from "../../types/VAL-CONTENT-V1";
-import fetchData from "../../utils/fetchData";
+import { Locale } from "../types/LocalizedNamesDto";
+import { Region } from "../types/Region";
+import { ContentDto } from "../types/VAL-CONTENT-V1";
+import fetchData from "../utils/fetchData";
 
 export const getContentsHandler = async ({
 	locale,
