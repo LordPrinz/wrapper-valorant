@@ -2,11 +2,17 @@ import { puuid } from "../../types/alias";
 import { Region } from "../../types/Region";
 import { ActiveShardDto } from "../../types/RIOT-ACCOUNT-V1";
 import { AccountDto } from "../../types/RIOT-ACCOUNT-V1";
+import fetchData from "../../utils/fetchData";
 
-export const getAccountByPuuid = async ({apiKey, puuid, region  = "eu"}: {	
-    puuid: puuid;
+export const getAccountByPuuid = async ({
+	apiKey,
+	puuid,
+	region = "eu",
+}: {
+	puuid: puuid;
 	region?: Region;
-	apiKey: string;}): Promise<AccountDto | null> => {
+	apiKey: string;
+}): Promise<AccountDto | null> => {
 	let response: any;
 
 	try {
@@ -21,13 +27,19 @@ export const getAccountByPuuid = async ({apiKey, puuid, region  = "eu"}: {
 	}
 
 	return <AccountDto>response;
-}
+};
 
-export const getAccountByName = async ({apiKey, tagLine, gameName, region  = "eu"}: {	
-    tagLine: string;
-    gameName: string;
+export const getAccountByName = async ({
+	apiKey,
+	tagLine,
+	gameName,
+	region = "eu",
+}: {
+	tagLine: string;
+	gameName: string;
 	region?: Region;
-	apiKey: string;}): Promise<AccountDto | null> => {
+	apiKey: string;
+}): Promise<AccountDto | null> => {
 	let response: any;
 
 	try {
@@ -42,19 +54,24 @@ export const getAccountByName = async ({apiKey, tagLine, gameName, region  = "eu
 	}
 
 	return <AccountDto>response;
-}
+};
 
-export const getMyAccount = async ({apiKey, authorization, region  = "eu"}: {	
-    authorization: string;
+export const getMyAccount = async ({
+	apiKey,
+	authorization,
+	region = "eu",
+}: {
+	authorization: string;
 	region?: Region;
-	apiKey: string;}): Promise<AccountDto | null> => {
+	apiKey: string;
+}): Promise<AccountDto | null> => {
 	let response: any;
 
 	try {
 		response = await fetchData({
 			region,
 			endpoint: `/riot/account/v1/accounts/me`,
-            params: [`Authorization=${authorization}`],
+			params: [`Authorization=${authorization}`],
 			apiKey,
 		});
 	} catch (err) {
@@ -63,20 +80,23 @@ export const getMyAccount = async ({apiKey, authorization, region  = "eu"}: {
 	}
 
 	return <AccountDto>response;
-}
+};
 
-
-export const getAccountActiveShard = async ({apiKey, puuid, game, region  = "eu"}: {	
-    game: string;
-    puuid: puuid;
+export const getAccountActiveShard = async ({
+	apiKey,
+	puuid,
+	region = "eu",
+}: {
+	puuid: puuid;
 	region?: Region;
-	apiKey: string;}): Promise<ActiveShardDto | null> => {
+	apiKey: string;
+}): Promise<ActiveShardDto | null> => {
 	let response: any;
 
 	try {
 		response = await fetchData({
 			region,
-			endpoint: `/riot/account/v1/active-shards/by-game/${game}/by-puuid/${puuid}`,
+			endpoint: `/riot/account/v1/active-shards/by-game/val/by-puuid/${puuid}`,
 			apiKey,
 		});
 	} catch (err) {
@@ -85,4 +105,4 @@ export const getAccountActiveShard = async ({apiKey, puuid, game, region  = "eu"
 	}
 
 	return <ActiveShardDto>response;
-}
+};
