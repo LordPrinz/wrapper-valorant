@@ -79,7 +79,7 @@ yarn add wrapper-valorant
 #### Typescript:
 
 ```ts
-import { ValorantApi } from "wrapper-valorant";
+import ValorantApi from "wrapper-valorant";
 
 const APIKey = ""; // Your API Key
 
