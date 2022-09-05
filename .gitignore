@@ -1,3 +1,4 @@
 /node_modules
 /src/setup-tests.ts
 /src/apiKey.ts
+/lib
