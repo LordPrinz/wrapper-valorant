@@ -97,5 +97,5 @@ ValApi.match
 	.then((data) => console.log(data));
 ```
 
-[npm-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png
-[npm-url]: https://www.npmjs.com/
+[npm-image]: https://img.shields.io/npm/v/wrapper-valorant.svg
+[npm-url]: https://www.npmjs.com/package/wrapper-valorant/
