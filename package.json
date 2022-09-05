@@ -1,8 +1,9 @@
 {
     "name": "wrapper-valorant",
-    "version": "0.2.1",
+    "version": "0.1.0",
     "description": "A wrapper for the valorant api",
-    "main": "src/index.ts",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/@LordPrinz"
     },
