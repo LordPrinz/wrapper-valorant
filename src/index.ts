@@ -15,6 +15,7 @@ import { getStatusHandler } from "./lib/controllers/VAL-STATUS-V1";
 import { int, puuid } from "./types/alias";
 import { Locale } from "./types/LocalizedNamesDto";
 import { Region } from "./types/Region";
+import { Queue } from "./types/RIOT-ACCOUNT-V1";
 
 class ValorantApi {
 	private key: string;
@@ -56,7 +57,7 @@ class ValorantApi {
 				apiKey: this.key,
 			});
 		},
-		getByQueue: async (data: { queue: string; region?: Region }) => {
+		getByQueue: async (data: { queue: Queue; region?: Region }) => {
 			return await getMatchByQueue({
 				...data,
 				apiKey: this.key,

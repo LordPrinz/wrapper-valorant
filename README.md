@@ -75,5 +75,28 @@ yarn add wrapper-valorant
 | AMERICAS | americas.api.riotgames.com |
 | EUROPE   | europe.api.riotgames.com   |
 
+## Usage
+
+#### Typescript:
+
+```ts
+import { API, Regions, Locales, Queue, RiotAPIError } from "wrapper-valorant";
+
+const APIKey = ""; // Your API Key
+
+const ValApi = new ValorantApi(APIKey); // An API instance for Valorant query
+
+// Example usage of the VAL-CONTENT-V1 API
+ValApi.getContents({ locale: "en-US" }).then((data) => console.log(data));
+
+// Production API Key
+
+ValApi.match.getByPuuid({ puuid: "" }); // Your puuid
+
+ValApi.match
+	.getByQueue({ queue: "competetive" })
+	.then((data) => console.log(data));
+```
+
 [npm-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png
 [npm-url]: https://www.npmjs.com/

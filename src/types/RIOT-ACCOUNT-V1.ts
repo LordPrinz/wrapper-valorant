@@ -9,3 +9,12 @@ export type ActiveShardDto = {
 	game: string;
 	activeShard: string;
 };
+
+export type Queue =
+	| "competetive"
+	| "unrated"
+	| "spikerush"
+	| "tournamentmode"
+	| "deathmatch"
+	| "onefa"
+	| "ggteam";

@@ -1,5 +1,6 @@
 import { puuid } from "../../types/alias";
 import { Region } from "../../types/Region";
+import { Queue } from "../../types/RIOT-ACCOUNT-V1";
 import {
 	MatchesMatchDto,
 	MatchlistDto,
@@ -62,7 +63,7 @@ export const getMatchByQueue = async ({
 	region = "eu",
 	apiKey,
 }: {
-	queue: string;
+	queue: Queue;
 	region?: Region;
 	apiKey: string;
 }): Promise<RecentMatchesDto | null> => {
