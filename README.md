@@ -97,5 +97,10 @@ ValApi.match
 	.then((data) => console.log(data));
 ```
 
+## Contact
+
+- GitHub [LordPrinz](https://github.com/LordPrinz)
+- Discord [<c2>Lord Prinz ™ 🔥#6396](https://discord.com/users/520676533279522817)
+
 [npm-image]: https://img.shields.io/npm/v/wrapper-valorant.svg
 [npm-url]: https://www.npmjs.com/package/wrapper-valorant/
