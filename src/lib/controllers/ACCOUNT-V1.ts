@@ -1,4 +1,5 @@
 import { puuid } from "../../types/alias";
+import { Region } from "../../types/Region";
 import { ActiveShardDto } from "../../types/RIOT-ACCOUNT-V1";
 import { AccountDto } from "../../types/RIOT-ACCOUNT-V1";
 
@@ -65,7 +66,7 @@ export const getMyAccount = async ({apiKey, authorization, region  = "eu"}: {
 }
 
 
-export const getAccountActiveShard = async ({apiKey,puuid, game, region  = "eu"}: {	
+export const getAccountActiveShard = async ({apiKey, puuid, game, region  = "eu"}: {	
     game: string;
     puuid: puuid;
 	region?: Region;

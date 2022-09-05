@@ -1,3 +1,4 @@
+import { getAccountByName, getAccountByPuuid, getAccountActiveShard, getMyAccount } from "./lib/controllers/ACCOUNT-V1";
 import { getContentsHandler } from "./lib/controllers/VAL-CONTENT-V1";
 import {
 	getMatchByMatchId,
@@ -6,7 +7,7 @@ import {
 } from "./lib/controllers/VAL-MATCH-V1";
 import { getRankedHandler } from "./lib/controllers/VAL-RANKED-V1";
 import { getStatusHandler } from "./lib/controllers/VAL-STATUS-V1";
-import { int } from "./types/alias";
+import { int, puuid } from "./types/alias";
 import { Locale } from "./types/LocalizedNamesDto";
 import { Region } from "./types/Region";
 
@@ -57,6 +58,29 @@ class ValorantApi {
 			});
 		},
 	};
+
+	public account = {
+		getByPuuid: async (data: {puuid: puuid; region?: Region}) => {
+			return await getAccountByPuuid({
+				...data, apiKey: this.key
+			})
+		},
+		getByName: async (data: {tagLine: string; gameName: string; region?: Region}) => {
+			return await getAccountByName({
+				...data, apiKey: this.key
+			})
+		},
+		getMyAccount: async (data: {authorization: string; region?: Region}) => {
+			return await getMyAccount({
+				...data, apiKey: this.key
+			})
+		},
+		getActiveShard: async (data: { puuid: puuid; game: string; region?: Region}) => {
+			return await getAccountActiveShard({
+				...data, apiKey: this.key
+			})
+		}
+	}
 }
 
 export default ValorantApi;
