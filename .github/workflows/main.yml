@@ -19,7 +19,6 @@ jobs:
         run: |
           git config user.name "Actions User"
           git config user.email noreply@github.com
-          npm version 0.1.1-dev.$(date +%s)
 
       # Publish to GitHub Package Registry
       - uses: actions/setup-node@master
