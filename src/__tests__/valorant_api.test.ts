@@ -165,7 +165,7 @@ describe("VAL-MATCH-V1", () => {
 		const api = new ValorantApi(API_KEY);
 		await api.match
 			.getByQueue({
-				queue: "Competetive",
+				queue: "competetive",
 				region: "eu",
 			})
 			.catch((err: any) => {
