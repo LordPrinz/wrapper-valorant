@@ -1,12 +1,9 @@
 {
-    "name": "wrapper-valorant",
-    "version": "0.1.0",
+    "name": "wrapper-valorant-api",
+    "version": "0.2.0",
     "description": "A wrapper for the valorant api",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/@LordPrinz"
-    },
     "files": [
         "lib/**/*"
     ],
@@ -24,7 +21,7 @@
         "api",
         "dzajlopment"
     ],
-    "author": "Lord Prinz",
+    "author": "LordPrinz",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/LordPrinz/wrapper-valorant/issues"
