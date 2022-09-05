@@ -1,7 +1,6 @@
 # wrapper-valorant
 
 A NodeJS wrapper for the VALORANT API.
-[Active Development]
 
 [![NPM Version][npm-image]][npm-url]
 
