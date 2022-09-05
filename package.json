@@ -3,6 +3,9 @@
     "version": "0.2.0",
     "description": "A wrapper for the valorant api",
     "main": "src/index.ts",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/@LordPrinz"
+    },
     "scripts": {
         "test": "jest",
         "build": "tsc",
