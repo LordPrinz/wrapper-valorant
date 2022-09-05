@@ -13,8 +13,8 @@ export const getStatusHandler = async ({
 
 	try {
 		response = await fetchData({
-			region: region,
-			endpoint: "/status/v1/platform-data",
+			region,
+			endpoint: "/val/status/v1/platform-data",
 			apiKey,
 		});
 	} catch (err) {

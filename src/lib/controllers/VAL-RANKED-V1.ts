@@ -27,7 +27,7 @@ export const getRankedHandler = async ({
 	try {
 		response = await fetchData({
 			region,
-			endpoint: `/ranked/v1/leaderboards/by-act/${actId}`,
+			endpoint: `/val/ranked/v1/leaderboards/by-act/${actId}`,
 			apiKey,
 			params: [
 				`size=${size ? size : 200}`,

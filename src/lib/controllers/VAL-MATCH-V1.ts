@@ -21,7 +21,7 @@ export const getMatchByMatchId = async ({
 	try {
 		response = await fetchData({
 			region: region,
-			endpoint: `/match/v1/matches/${matchId}`,
+			endpoint: `/val/match/v1/matches/${matchId}`,
 			apiKey,
 		});
 	} catch (err) {
@@ -46,7 +46,7 @@ export const getMatchByPuuid = async ({
 	try {
 		response = await fetchData({
 			region: region,
-			endpoint: `/match/v1/matchlists/by-puuid/${puuid}`,
+			endpoint: `/val/match/v1/matchlists/by-puuid/${puuid}`,
 			apiKey,
 		});
 	} catch (err) {
@@ -70,8 +70,8 @@ export const getMatchByQueue = async ({
 
 	try {
 		response = await fetchData({
-			region: region,
-			endpoint: `/match/v1/recent-matches/by-queue/${queue}`,
+			region,
+			endpoint: `/val/match/v1/recent-matches/by-queue/${queue}`,
 			apiKey,
 		});
 	} catch (err) {

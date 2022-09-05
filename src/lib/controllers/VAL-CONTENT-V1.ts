@@ -16,8 +16,8 @@ export const getContentsHandler = async ({
 
 	try {
 		response = await fetchData({
-			region: region,
-			endpoint: "/content/v1/contents",
+			region,
+			endpoint: "/val/content/v1/contents",
 			params: [`locale=${locale}`],
 			apiKey,
 		});

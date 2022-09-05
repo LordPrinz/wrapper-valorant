@@ -19,7 +19,7 @@ const fetchData = async <T>({
 		throw new Error("No region provided!");
 	}
 
-	const url = `https://${region}.api.riotgames.com/val${endpoint}?${
+	const url = `https://${region}.api.riotgames.com${endpoint}?${
 		params ? params.join("&") : ""
 	}`;
 
