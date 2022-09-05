@@ -6,6 +6,9 @@
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/@LordPrinz"
     },
+    "files": [
+        "lib/**/*"
+    ],
     "scripts": {
         "test": "jest",
         "build": "tsc",
