@@ -9,13 +9,13 @@ A NodeJS wrapper for the VALORANT API.
 npm:
 
 ```bash
-npm i wrapper-valorant
+npm i wrapper-valorant-api
 ```
 
 yarn:
 
 ```bash
-yarn add wrapper-valorant
+yarn add wrapper-valorant-api
 ```
 
 [**VAL-CONTENT-V1**](https://developer.riotgames.com/apis#val-content-v1)
