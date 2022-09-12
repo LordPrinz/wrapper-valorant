@@ -1,7 +1,7 @@
 import { int } from "../types/alias";
 import { Region } from "../types/Region";
 import { LeaderboardDto } from "../types/VAL-RANKED-V1";
-import fetchData from "../utils/fetchData";
+import fetchData from "../utils/fetchData.js";
 
 export const getRankedHandler = async ({
 	actId,

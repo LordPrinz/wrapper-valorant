@@ -3,15 +3,15 @@ import {
 	getAccountByPuuid,
 	getAccountActiveShard,
 	getMyAccount,
-} from "./controllers/ACCOUNT-V1";
-import { getContentsHandler } from "./controllers/VAL-CONTENT-V1";
+} from "./controllers/ACCOUNT-V1.js";
+import { getContentsHandler } from "./controllers/VAL-CONTENT-V1.js";
 import {
 	getMatchByMatchId,
 	getMatchByPuuid,
 	getMatchByQueue,
-} from "./controllers/VAL-MATCH-V1";
-import { getRankedHandler } from "./controllers/VAL-RANKED-V1";
-import { getStatusHandler } from "./controllers/VAL-STATUS-V1";
+} from "./controllers/VAL-MATCH-V1.js";
+import { getRankedHandler } from "./controllers/VAL-RANKED-V1.js";
+import { getStatusHandler } from "./controllers/VAL-STATUS-V1.js";
 import { int, puuid } from "./types/alias";
 import { Locale } from "./types/LocalizedNamesDto";
 import { Region } from "./types/Region";

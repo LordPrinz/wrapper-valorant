@@ -1,9 +1,10 @@
 {
     "name": "wrapper-valorant-api",
-    "version": "0.2.4",
-    "description": "A wrapper for the valorant api",
+    "version": "0.2.9",
+    "description": "A wrapper for the official Valorant Api.",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
+    "type": "module",
     "files": [
         "lib/**/*"
     ],
@@ -19,7 +20,10 @@
     "keywords": [
         "valorant",
         "api",
-        "dzajlopment"
+        "dzajlopment",
+        "wrapper",
+        "coverage",
+        "riot"
     ],
     "author": "LordPrinz",
     "license": "ISC",

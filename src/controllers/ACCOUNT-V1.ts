@@ -2,7 +2,7 @@ import { puuid } from "../types/alias";
 import { Region } from "../types/Region";
 import { ActiveShardDto } from "../types/RIOT-ACCOUNT-V1";
 import { AccountDto } from "../types/RIOT-ACCOUNT-V1";
-import fetchData from "../utils/fetchData";
+import fetchData from "../utils/fetchData.js";
 
 export const getAccountByPuuid = async ({
 	apiKey,

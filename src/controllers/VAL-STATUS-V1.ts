@@ -1,6 +1,6 @@
 import { Region } from "../types/Region";
 import { PlatformDataDto } from "../types/VAL-STATUS-V1";
-import fetchData from "../utils/fetchData";
+import fetchData from "../utils/fetchData.js";
 
 export const getStatusHandler = async ({
 	region = "eu",

@@ -6,7 +6,7 @@ import {
 	MatchlistDto,
 	RecentMatchesDto,
 } from "../types/VAL-MATCH-V1";
-import fetchData from "../utils/fetchData";
+import fetchData from "../utils/fetchData.js";
 
 export const getMatchByMatchId = async ({
 	matchId,
