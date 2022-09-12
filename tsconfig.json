@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
 		"target": "ES6",
-		"module": "AMD",
+		"module": "CommonJS",
 		"declaration": true,
-		"outFile": "./lib/index.js",
+		"outDir": "./lib",
 		"strict": true,
 		"moduleResolution": "node"
 	},
