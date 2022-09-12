@@ -76,6 +76,27 @@ yarn add wrapper-valorant-api
 
 ## Usage
 
+### JavaScript:
+
+```js
+const { ValorantApi } = require("wrapper-valorant-api");
+
+const APIKey = ""; // Your API Key
+
+const ValApi = new ValorantApi(APIKey); // An API instance for Valorant query
+
+// Example usage of the VAL-CONTENT-V1 API
+ValApi.getContents({ locale: "en-US" }).then((data) => console.log(data));
+
+// Production API Key
+
+ValApi.match.getByPuuid({ puuid: "" }); // Your puuid
+
+ValApi.match
+	.getByQueue({ queue: "competetive" })
+	.then((data) => console.log(data));
+```
+
 #### Typescript:
 
 ```ts
