@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
 		"target": "ES6",
-		"module": "CommonJS",
+		"module": "AMD",
 		"declaration": true,
-		"outDir": "./lib",
+		"outFile": "./lib/index.js",
 		"strict": true,
 		"moduleResolution": "node"
 	},
 	"include": ["src"],
-	"exclude": ["node_modules", "**/__tests__/*"]
+	"exclude": ["node_modules", "**/__tests__/*", "./src/setup-tests.ts"]
 }
