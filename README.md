@@ -49,7 +49,7 @@ yarn add wrapper-valorant-api
 | [account.getByPuuid({puuid, region?})](https://developer.riotgames.com/apis#account-v1/GET_getByPuuid)                 | Get account by puuid                 |
 | [account.getByName({gameName, tagLine, region?})](https://developer.riotgames.com/apis#account-v1/GET_getByRiotId)     | Get account by riot id               |
 | [account.getMyAccount({authorization, region?})](https://developer.riotgames.com/apis#account-v1/GET_getByAccessToken) | Get account by authentication string |
-| [account.getActiveShardByPuuid({puuid, region?})](https://developer.riotgames.com/apis#account-v1/GET_getActiveShard)  | Get active shard for a player        |
+| [account.getActiveShard({puuid, region?})](https://developer.riotgames.com/apis#account-v1/GET_getActiveShard)         | Get active shard for a player        |
 
 ---
 
