@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import axios from "axios";
 
 const fetchData = async <T>({
 	region,
@@ -23,18 +23,17 @@ const fetchData = async <T>({
 		params ? params.join("&") : ""
 	}`;
 
-	const response = await fetch(url, {
-		headers: {
-			"X-Riot-Token": apiKey,
-		},
-	}).then((response) => {
-		if (response.status !== 200) {
-			throw new Error(response.statusText);
-		}
-		return response.json();
-	});
+	try {
+		const { data } = await axios(url, {
+			headers: {
+				"X-Riot-Token": apiKey,
+			},
+		});
 
-	return response;
+		return data;
+	} catch (err) {
+		return err as never;
+	}
 };
 
 export default fetchData;
