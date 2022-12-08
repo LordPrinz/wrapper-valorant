@@ -1,6 +1,6 @@
 {
     "name": "wrapper-valorant-api",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "A wrapper for the official Valorant Api.",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
