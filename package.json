@@ -1,5 +1,5 @@
 {
-    "name": "@lordprinz/wrapper-valorant-api",
+    "name": "wrapper-valorant-api",
     "version": "2.0.1",
     "description": "A wrapper for the official Valorant Api.",
     "main": "lib/index.js",
