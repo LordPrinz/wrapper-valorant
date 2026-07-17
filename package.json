@@ -1,6 +1,6 @@
 {
   "name": "wrapper-valorant-api",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Zero-runtime-dependency TypeScript client for the official Riot VALORANT APIs.",
   "type": "module",
   "main": "./dist/index.cjs",
