@@ -2,3 +2,10 @@
 /src/setup-tests.ts
 /src/apiKey.ts
 /lib
+/dist
+/coverage
+/.env
+/.env.*
+!/.env.example
+*.tgz
+.env

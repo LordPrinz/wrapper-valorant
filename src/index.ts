@@ -1,100 +1,87 @@
+import { ENDPOINTS } from "./core/endpoints.ts"
+import { RequestExecutor, type RequestExecutorConfig } from "./core/request-executor.ts"
 import {
-	getAccountByName,
-	getAccountByPuuid,
-	getAccountActiveShard,
-	getMyAccount,
-} from "./controllers/ACCOUNT-V1.js";
-import { getContentsHandler } from "./controllers/VAL-CONTENT-V1.js";
-import {
-	getMatchByMatchId,
-	getMatchByPuuid,
-	getMatchByQueue,
-} from "./controllers/VAL-MATCH-V1.js";
-import { getRankedHandler } from "./controllers/VAL-RANKED-V1.js";
-import { getStatusHandler } from "./controllers/VAL-STATUS-V1.js";
-import { int, puuid } from "./types/alias";
-import { Locale } from "./types/LocalizedNamesDto";
-import { Region } from "./types/Region";
-import { Queue } from "./types/RIOT-ACCOUNT-V1";
+  assertPlatformRoute,
+  assertRegionalRoute,
+  defaultRegionalRoute,
+  type PlatformRoute,
+  type RegionalRoute,
+} from "./core/routing.ts"
+import { AccountApi } from "./families/account.ts"
+import { ContentApi } from "./families/content.ts"
+import { ConsoleMatchApi, MatchApi } from "./families/match.ts"
+import { ConsoleRankedApi, RankedApi } from "./families/ranked.ts"
+import { StatusApi } from "./families/status.ts"
 
-class ValorantApi {
-	private key: string;
-
-	constructor(key: string) {
-		if (!key) {
-			throw new Error("No api key provided!");
-		}
-		this.key = key;
-	}
-
-	async getContents(data: { locale: Locale; region?: Region }) {
-		return await getContentsHandler({ ...data, apiKey: this.key });
-	}
-
-	async getStatus(data: { region?: Region }) {
-		return await getStatusHandler({ ...data, apiKey: this.key });
-	}
-
-	async getLeaderboard(data: {
-		actId: string;
-		region?: Region;
-		size?: int;
-		startIndex?: int;
-	}) {
-		return await getRankedHandler({ ...data, apiKey: this.key });
-	}
-
-	public match = {
-		getByMatchId: async (data: { matchId: string; region?: Region }) => {
-			return await getMatchByMatchId({
-				...data,
-				apiKey: this.key,
-			});
-		},
-		getByPuuid: async (data: { puuid: string; region?: Region }) => {
-			return await getMatchByPuuid({
-				...data,
-				apiKey: this.key,
-			});
-		},
-		getByQueue: async (data: { queue: Queue; region?: Region }) => {
-			return await getMatchByQueue({
-				...data,
-				apiKey: this.key,
-			});
-		},
-	};
-
-	public account = {
-		getByPuuid: async (data: { puuid: puuid; region?: Region }) => {
-			return await getAccountByPuuid({
-				...data,
-				apiKey: this.key,
-			});
-		},
-		getByName: async (data: {
-			tagLine: string;
-			gameName: string;
-			region?: Region;
-		}) => {
-			return await getAccountByName({
-				...data,
-				apiKey: this.key,
-			});
-		},
-		getMyAccount: async (data: { authorization: string; region?: Region }) => {
-			return await getMyAccount({
-				...data,
-				apiKey: this.key,
-			});
-		},
-		getActiveShard: async (data: { puuid: puuid; region?: Region }) => {
-			return await getAccountActiveShard({
-				...data,
-				apiKey: this.key,
-			});
-		},
-	};
+export type ValorantApiConfig = RequestExecutorConfig & {
+  /** Default VAL platform route. Defaults to `eu`. */
+  readonly defaultPlatform?: PlatformRoute
+  /** Default Account regional route inferred from the platform when omitted. */
+  readonly defaultRegion?: RegionalRoute
 }
 
-module.exports = { ValorantApi };
+/** Typed client for the official Riot VALORANT and Account APIs. */
+export class ValorantApi {
+  readonly account: AccountApi
+  readonly consoleMatch: ConsoleMatchApi
+  readonly consoleRanked: ConsoleRankedApi
+  readonly content: ContentApi
+  readonly match: MatchApi
+  readonly ranked: RankedApi
+  readonly status: StatusApi
+  readonly endpoints = ENDPOINTS
+
+  /** Creates an isolated client with injectable transport, cache, and lifecycle hooks. */
+  constructor(config: ValorantApiConfig) {
+    const defaultPlatform = config.defaultPlatform ?? "eu"
+    const defaultRegion = config.defaultRegion ?? defaultRegionalRoute(defaultPlatform)
+    assertPlatformRoute(defaultPlatform)
+    assertRegionalRoute(defaultRegion)
+    const executor = new RequestExecutor(config)
+
+    this.account = new AccountApi(executor, defaultRegion)
+    this.consoleMatch = new ConsoleMatchApi(executor, defaultPlatform)
+    this.consoleRanked = new ConsoleRankedApi(executor, defaultPlatform)
+    this.content = new ContentApi(executor, defaultPlatform)
+    this.match = new MatchApi(executor, defaultPlatform)
+    this.ranked = new RankedApi(executor, defaultPlatform)
+    this.status = new StatusApi(executor, defaultPlatform)
+  }
+}
+
+export { type CacheAdapter, MemoryCache, type MemoryCacheOptions } from "./core/cache.ts"
+export { ENDPOINTS, type EndpointMetadata, type RateLimit } from "./core/endpoints.ts"
+export {
+  HookExecutionError,
+  RequestCancelledError,
+  RequestTimeoutError,
+  RiotApiError,
+  type RiotRateLimitHeaders,
+  TransportError,
+  ValorantConfigurationError,
+} from "./core/errors.ts"
+export type {
+  CachePolicy,
+  ClientHooks,
+  JsonDecoder,
+  PlatformDecodedRequestOptions,
+  PlatformRequestOptions,
+  RegionalDecodedRequestOptions,
+  RegionalRequestOptions,
+  RequestHookContext,
+  ResponseHookContext,
+} from "./core/request-executor.ts"
+export type { PlatformRoute, RegionalRoute, RiotRoute } from "./core/routing.ts"
+export { PLATFORM_ROUTES, REGIONAL_ROUTES } from "./core/routing.ts"
+export type { HttpHeaders, HttpRequest, HttpResponse, TransportAdapter } from "./core/transport.ts"
+export { FetchTransport } from "./core/transport.ts"
+export type { ContentRequestOptions, DecodedContentRequestOptions } from "./families/content.ts"
+export type {
+  DecodedLeaderboardRequestOptions,
+  LeaderboardRequestOptions,
+} from "./families/ranked.ts"
+export type * from "./types/account.ts"
+export type * from "./types/content.ts"
+export type * from "./types/match.ts"
+export type * from "./types/ranked.ts"
+export type * from "./types/status.ts"

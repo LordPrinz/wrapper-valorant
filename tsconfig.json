@@ -1,12 +1,30 @@
 {
-	"compilerOptions": {
-		"target": "ES6",
-		"module": "CommonJS",
-		"declaration": true,
-		"outDir": "./lib",
-		"strict": true,
-		"moduleResolution": "node"
-	},
-	"include": ["src"],
-	"exclude": ["node_modules", "**/__tests__/*", "./src/setup-tests.ts"]
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "types": ["vitest/globals"]
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
 }

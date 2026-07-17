@@ -1,127 +1,168 @@
 # wrapper-valorant-api
 
-A NodeJS wrapper for the VALORANT API.
+Tiny, typed, zero-runtime-dependency client for the official Riot VALORANT APIs.
 
-[![NPM Version][npm-image]][npm-url]
+[![npm version](https://img.shields.io/npm/v/wrapper-valorant-api.svg)](https://www.npmjs.com/package/wrapper-valorant-api)
+[![CI](https://github.com/LordPrinz/wrapper-valorant/actions/workflows/ci.yml/badge.svg)](https://github.com/LordPrinz/wrapper-valorant/actions/workflows/ci.yml)
 
-## Installation
+- ESM and CommonJS with bundled TypeScript declarations
+- Native `fetch`, no runtime dependencies, about 4.2 kB gzip
+- Platform and regional routing with safe path encoding
+- `AbortSignal` cancellation and configurable timeouts
+- Pluggable transport, cache, decoders, logging, metrics, and rate-limit hooks
+- Typed Riot errors with retry and rate-limit response metadata
+- PC and console match/ranked endpoint families
 
-npm:
+## Requirements
+
+- Node.js 22 or newer, or a compatible runtime with Fetch and Abort APIs
+- A Riot development or production API key
 
 ```bash
-npm i wrapper-valorant-api
+npm install wrapper-valorant-api
 ```
 
-yarn:
-
-```bash
-yarn add wrapper-valorant-api
-```
-
-[**VAL-CONTENT-V1**](https://developer.riotgames.com/apis#val-content-v1)
-
-| Method                                                                                               | Description                     |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [getContents({locale, region?)}](https://developer.riotgames.com/apis#val-content-v1/GET_getContent) | Get content filtered by locale. |
-
----
-
-[**VAL-MATCH-V1**](https://developer.riotgames.com/apis#val-match-v1)
-
-| Method                                                                                                   | Description                             |
-| -------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| [match.getByMatchId({matchid, region?})](https://developer.riotgames.com/apis#val-match-v1/GET_getMatch) | Get match by id                         |
-| [match.getByPuuid({puuid, region?)}](https://developer.riotgames.com/apis#val-match-v1/GET_getMatchlist) | Get matchlist for games played by puuid |
-| [match.getByQueue({queue, region?})](https://developer.riotgames.com/apis#val-match-v1/GET_getRecent)    | Get recent matches                      |
-
----
-
-[**VAL-RANKED-V1**](https://developer.riotgames.com/apis#val-ranked-v1)
-
-| Method                                                                                                                        | Description                               |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [getLeaderboard({actId, region?, size?, startIndex?})](https://developer.riotgames.com/apis#val-ranked-v1/GET_getLeaderboard) | Get leaderboard for the competitive queue |
-
-[**ACCOUNT-V1**](https://developer.riotgames.com/apis#account-v1)
-
-| Method                                                                                                                 | Description                          |
-| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| [account.getByPuuid({puuid, region?})](https://developer.riotgames.com/apis#account-v1/GET_getByPuuid)                 | Get account by puuid                 |
-| [account.getByName({gameName, tagLine, region?})](https://developer.riotgames.com/apis#account-v1/GET_getByRiotId)     | Get account by riot id               |
-| [account.getMyAccount({authorization, region?})](https://developer.riotgames.com/apis#account-v1/GET_getByAccessToken) | Get account by authentication string |
-| [account.getActiveShard({puuid, region?})](https://developer.riotgames.com/apis#account-v1/GET_getActiveShard)         | Get active shard for a player        |
-
----
-
-## Supported regions:
-
-#### Valorant API:
-
-| Region | Endpoint                |
-| ------ | ----------------------- |
-| APAC   | ap.api.riotgames.com    |
-| BR     | br.api.riotgames.com    |
-| EU     | eu.api.riotgames.com    |
-| KR     | kr.api.riotgames.com    |
-| LATAM  | latam.api.riotgames.com |
-| NA     | na.api.riotgames.com    |
-
-#### Account API:
-
-| Region   | Endpoint                   |
-| -------- | -------------------------- |
-| ASIA     | asia.api.riotgames.com     |
-| AMERICAS | americas.api.riotgames.com |
-| EUROPE   | europe.api.riotgames.com   |
-
-## Usage
-
-### JavaScript:
-
-```js
-const { ValorantApi } = require("wrapper-valorant-api");
-
-const APIKey = ""; // Your API Key
-
-const ValApi = new ValorantApi(APIKey); // An API instance for Valorant query
-
-// Example usage of the VAL-CONTENT-V1 API
-ValApi.getContents({ locale: "en-US" }).then((data) => console.log(data));
-
-// Production API Key
-
-ValApi.match.getByPuuid({ puuid: "" }); // Your puuid
-
-ValApi.match
-	.getByQueue({ queue: "competetive" })
-	.then((data) => console.log(data));
-```
-
-#### Typescript:
+## Quick start
 
 ```ts
-import { ValorantApi } from "wrapper-valorant-api";
+import { ValorantApi } from "wrapper-valorant-api"
 
-const APIKey = ""; // Your API Key
+const valorant = new ValorantApi({
+  apiKey: process.env.RIOT_API_KEY ?? "",
+  defaultPlatform: "eu",
+})
 
-const ValApi = new ValorantApi(APIKey); // An API instance for Valorant query
-
-// Example usage of the VAL-CONTENT-V1 API
-ValApi.getContents({ locale: "en-US" }).then((data) => console.log(data));
-
-// Production API Key
-
-ValApi.match.getByPuuid({ puuid: "" }); // Your puuid
-
-ValApi.match
-	.getByQueue({ queue: "competetive" })
-	.then((data) => console.log(data));
+const content = await valorant.content.getContents({ locale: "en-US" })
+const account = await valorant.account.getByRiotId("Game Name", "TAG")
+const history = await valorant.match.getMatchlist(account.puuid)
 ```
 
-## Contact
+CommonJS is supported through the same package:
 
-- GitHub [LordPrinz](https://github.com/LordPrinz)
-- Discord [<c2>Lord Prinz ™ 🔥#6396](https://discord.com/users/520676533279522817)
+```js
+const { ValorantApi } = require("wrapper-valorant-api")
+```
 
-[npm-image]: https://img.shields.io/npm/v/wrapper-valorant-api.svg
-[npm-url]: https://www.npmjs.com/package/wrapper-valorant-api
+## Endpoint families
+
+| Client method | Official endpoint |
+| --- | --- |
+| `match.getMatch(matchId)` | `GET /val/match/v1/matches/{matchId}` |
+| `match.getMatchlist(puuid)` | `GET /val/match/v1/matchlists/by-puuid/{puuid}` |
+| `match.getRecent(queue)` | `GET /val/match/v1/recent-matches/by-queue/{queue}` |
+| `content.getContents(options)` | `GET /val/content/v1/contents` |
+| `account.getByRiotId(gameName, tagLine)` | `GET /riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}` |
+| `account.getByPuuid(puuid)` | `GET /riot/account/v1/accounts/by-puuid/{puuid}` |
+| `account.getMe(accessToken)` | `GET /riot/account/v1/accounts/me` |
+| `account.getActiveShard(puuid, game)` | `GET /riot/account/v1/active-shards/by-game/{game}/by-puuid/{puuid}` |
+| `ranked.getLeaderboard(actId, options)` | `GET /val/ranked/v1/leaderboards/by-act/{actId}` |
+| `status.getPlatformData()` | `GET /val/status/v1/platform-data` |
+| `consoleMatch.getMatch(matchId)` | `GET /val/match/console/v1/matches/{matchId}` |
+| `consoleMatch.getMatchlist(puuid)` | `GET /val/match/console/v1/matchlists/by-puuid/{puuid}` |
+| `consoleMatch.getRecent(queue)` | `GET /val/match/console/v1/recent-matches/by-queue/{queue}` |
+| `consoleRanked.getLeaderboard(actId, options)` | `GET /val/console/ranked/v1/leaderboards/by-act/{actId}` |
+
+The package exposes `ENDPOINTS` and `valorant.endpoints` with method, route type, cacheability, and the documented rate-limit windows supplied for each operation. Account esports variants use the same methods with `{ region: "esports" }`.
+
+## Cancellation and timeout
+
+```ts
+const controller = new AbortController()
+
+const request = valorant.match.getMatch("match-id", {
+  signal: controller.signal,
+})
+
+controller.abort("navigation changed")
+await request
+```
+
+Cancellation rejects with `RequestCancelledError`; elapsed client timeouts reject with `RequestTimeoutError`. Configure the default using `timeoutMs` in the constructor.
+
+## Caching
+
+Caching is opt-in and only applies to endpoints marked cacheable:
+
+```ts
+import { MemoryCache, ValorantApi } from "wrapper-valorant-api"
+
+const valorant = new ValorantApi({
+  apiKey: process.env.RIOT_API_KEY ?? "",
+  cache: new MemoryCache(),
+  cacheTtlMs: 30_000,
+})
+
+await valorant.content.getContents({ cache: { ttlMs: 300_000 } })
+await valorant.content.getContents({ cache: false })
+```
+
+Implement `CacheAdapter` to connect Redis, Keyv, an LRU cache, or your application cache. Raw responses are cached and decoded separately for every caller.
+
+## Validation and library integrations
+
+Response declarations describe Riot's wire format but do not perform runtime validation. Supply a `decode` function when data crosses a trust boundary:
+
+```ts
+import { z } from "zod"
+
+const Account = z.object({
+  puuid: z.string(),
+  gameName: z.string(),
+  tagLine: z.string(),
+})
+
+const account = await valorant.account.getByRiotId("Name", "TAG", {
+  decode: Account.parse,
+})
+```
+
+Zod is only an example and is not a package dependency. A `TransportAdapter` can replace Fetch, while hooks integrate tracing, metrics, logging, or an external rate limiter:
+
+```ts
+const valorant = new ValorantApi({
+  apiKey: process.env.RIOT_API_KEY ?? "",
+  hooks: {
+    onRequest: ({ endpoint, rateLimits }) => limiter.acquire(endpoint.id, rateLimits),
+    onResponse: ({ endpoint, status, durationMs }) => metrics.observe(endpoint.id, status, durationMs),
+  },
+})
+```
+
+Hooks never receive authorization headers or tokens.
+
+## Errors
+
+```ts
+import { RiotApiError } from "wrapper-valorant-api"
+
+try {
+  await valorant.match.getMatch("unknown")
+} catch (error) {
+  if (error instanceof RiotApiError) {
+    console.error(error.status, error.retryAfterMs, error.rateLimit)
+  }
+}
+```
+
+The public error classes are `ValorantConfigurationError`, `RequestCancelledError`, `RequestTimeoutError`, `TransportError`, and `RiotApiError`.
+
+## Routing
+
+VAL endpoints use a platform route: `ap`, `br`, `eu`, `kr`, `latam`, or `na`. Account endpoints use a regional route: `americas`, `asia`, `europe`, or `esports`. The regional default is inferred from the default platform and can be overridden globally or per request.
+
+## Security
+
+Riot API keys are server-side secrets. Never bundle a key into browser, desktop, mobile, or other distributed client code. Keep `.env` files out of version control, use HTTPS, rotate leaked credentials, and use Riot Sign On access tokens only with the account `getMe` flow.
+
+## Documentation
+
+- [GitHub Wiki source](docs/wiki/Home.md)
+- [Endpoint and rate-limit reference](docs/wiki/Endpoints.md)
+- [Caching and integrations](docs/wiki/Caching-and-Integrations.md)
+- [Migration from v2](docs/wiki/Migration-v2-to-v3.md)
+- [Official Riot API reference](https://developer.riotgames.com/apis)
+- [Official VALORANT developer documentation](https://developer.riotgames.com/docs/valorant)
+
+## License
+
+[MIT](License)
