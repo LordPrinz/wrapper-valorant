@@ -3,6 +3,7 @@ name: Publish
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,6 +11,9 @@ permissions:
 jobs:
   npm:
     name: Publish to npm
+    # Only publish to npm on a real release; workflow_dispatch is for
+    # re-publishing to GitHub Packages without a redundant npm publish.
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     environment: npm
     permissions:
@@ -31,7 +35,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -48,6 +51,10 @@ jobs:
       # dist is already built above and validated by the npm job's `check`;
       # skip lifecycle scripts so prepublishOnly's pack-smoke (which imports the
       # unscoped name) doesn't run against the temporarily scoped package name.
+      #
+      # Auth uses a classic PAT (write:packages) via the GH_PACKAGES_TOKEN
+      # secret. GITHUB_TOKEN cannot create a new package under a personal
+      # (user) namespace on first publish and returns 403 write_package.
       - run: npm publish --registry=https://npm.pkg.github.com --ignore-scripts
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
