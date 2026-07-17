@@ -45,6 +45,9 @@ jobs:
       # GitHub Packages requires a scoped name owned by the repo owner.
       - name: Scope package name for GitHub Packages
         run: npm pkg set name=@lordprinz/wrapper-valorant-api
-      - run: npm publish --registry=https://npm.pkg.github.com
+      # dist is already built above and validated by the npm job's `check`;
+      # skip lifecycle scripts so prepublishOnly's pack-smoke (which imports the
+      # unscoped name) doesn't run against the temporarily scoped package name.
+      - run: npm publish --registry=https://npm.pkg.github.com --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
